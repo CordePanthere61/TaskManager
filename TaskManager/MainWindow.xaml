@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TaskManager"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:TaskManager" 
         mc:Ignorable="d"
         Title="Task Manager" Height="500" Width="550">
     
@@ -54,18 +55,24 @@
         <TabControl Grid.Row="2">
             <TabItem Header="Processes">
 
-                <ListView>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding LoadProcessesCommand}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ListView ItemsSource="{Binding Apps}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                             <GridViewColumn Header="CPU" Width="125"></GridViewColumn>
                             <GridViewColumn Header="Memory" Width="125"></GridViewColumn>
                             <GridViewColumn Header="Disk" Width="125"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
+
             </TabItem>
-            
             
             <TabItem Header="Performance" />
             <TabItem Header="App history" />

@@ -4,20 +4,31 @@ using System.Diagnostics;
 using SimpleMvvmToolkit.Express;
 using System.Text;
 using System.Collections.ObjectModel;
+using TaskManager.Common.Models;
 
 namespace TaskManager.Common
 {
     public class MainViewModel : ViewModelBase<MainViewModel>
     {
 
-        //public ObservableCollection<Result> AllProcesses { get; set;}
+        public ObservableCollection<Application> Apps { get; set; }
+
+        public DelegateCommand LoadProcessesCommand => new DelegateCommand(LoadProcesses);
 
         public MainViewModel()
         {
-            //_processLoader = new ProcessLoader();
-            //LoadCurrentProcesses();
-        }
 
-        
+        }
+        private void LoadProcesses()
+        {
+            Apps = new ObservableCollection<Application>();
+            var processes = Process.GetProcesses();
+            foreach (var process in processes)
+            {
+                var app = new Application();
+                app.Name = process.ProcessName;
+                Apps.Add(app);
+            }
+        }
     }
 }
