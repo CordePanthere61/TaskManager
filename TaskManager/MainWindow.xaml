@@ -1,0 +1,78 @@
+﻿<Window x:Class="TaskManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="Task Manager" Height="500" Width="550">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Menu DockPanel.Dock ="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Run new task" />
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="_Options">
+                <MenuItem Header="Always on top" IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Minimize on use" IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Hide when minimized" />
+                <MenuItem Header="Set default tab">
+                    <MenuItem IsCheckable="True" IsChecked="True" Header="Processes"/>
+                    <MenuItem IsCheckable="True" Header="Performance"/>
+                    <MenuItem IsCheckable="True" Header="App history"/>
+                    <MenuItem IsCheckable="True" Header="Startup"/>
+                    <MenuItem IsCheckable="True" Header="Users"/>
+                    <MenuItem IsCheckable="True" Header="Details"/>
+                    <MenuItem IsCheckable="True" Header="Services"/>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Show full account name" IsEnabled="False" />
+                <Separator></Separator>
+                <MenuItem Header="Show history for all processes" IsEnabled="False" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="Refresh now" />
+                <MenuItem Header="Update speed">
+                    <MenuItem Header="High" IsCheckable="True" IsChecked="False"/>
+                    <MenuItem Header="Normal" IsCheckable="True" IsChecked="True"/>
+                    <MenuItem Header="Low" IsCheckable="True" IsChecked="False"/>
+                    <MenuItem Header="Pause" IsCheckable="True" IsChecked="False"/>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Group by type" IsCheckable="True" IsChecked="True" />
+                <MenuItem Header="Expand all" />
+                <MenuItem Header="Collapse all" />
+            </MenuItem>
+        </Menu>
+
+        <TabControl Grid.Row="2">
+            <TabItem Header="Processes">
+
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="CPU" Width="125"></GridViewColumn>
+                            <GridViewColumn Header="Memory" Width="125"></GridViewColumn>
+                            <GridViewColumn Header="Disk" Width="125"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            
+            
+            <TabItem Header="Performance" />
+            <TabItem Header="App history" />
+            <TabItem Header="Startup" />
+            <TabItem Header="Users" />
+            <TabItem Header="Details" />
+            <TabItem Header="Services" />
+        </TabControl>
+    </Grid>
+</Window>
